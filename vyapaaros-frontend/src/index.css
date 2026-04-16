@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for Design System */
+:root {
+  /* Primary Colors */
+  --color-primary: #0061FF;
+  --color-primary-hover: #0040CC;
+  --color-primary-active: #002B99;
+  --color-primary-light: #E3F2FD;
+
+  /* Trust Score Segment Colors */
+  --color-butterfly: #10B981;
+  --color-butterfly-light: #D1FAE5;
+  --color-butterfly-dark: #047857;
+
+  --color-loyal: #F59E0B;
+  --color-loyal-light: #FEF3C7;
+  --color-loyal-dark: #D97706;
+
+  --color-one-time: #6366F1;
+  --color-one-time-light: #E0E7FF;
+  --color-one-time-dark: #4F46E5;
+
+  --color-risky: #EF4444;
+  --color-risky-light: #FEE2E2;
+  --color-risky-dark: #DC2626;
+
+  /* Semantic Status Colors */
+  --color-success: #10B981;
+  --color-success-light: #D1FAE5;
+  --color-success-dark: #047857;
+
+  --color-warning: #F59E0B;
+  --color-warning-light: #FEF3C7;
+  --color-warning-dark: #D97706;
+
+  --color-danger: #EF4444;
+  --color-danger-light: #FEE2E2;
+  --color-danger-dark: #DC2626;
+
+  --color-info: #6366F1;
+  --color-info-light: #E0E7FF;
+  --color-info-dark: #4F46E5;
+
+  /* Grayscale Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-tertiary: #6B7280;
+  --color-text-disabled: #9CA3AF;
+
+  --color-bg-primary: #F9FAFB;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-hover: #F3F4F6;
+
+  --color-border: #E5E7EB;
+  --color-border-light: #D1D5DB;
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-bg-primary text-text-primary;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Focus styles for accessibility */
+  *:focus {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Only show focus ring for keyboard navigation */
+  *:focus:not(:focus-visible) {
+    @apply ring-0 ring-offset-0;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Card component base */
+  .card {
+    @apply bg-bg-secondary border border-border rounded-lg shadow-card;
+  }
+
+  .card:hover {
+    @apply shadow-card-hover;
+  }
+
+  /* Button base styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-hover active:bg-primary-active focus:ring-primary;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-hover text-text-primary border border-border-light hover:bg-gray-200 focus:ring-gray-500;
+  }
+
+  .btn-danger {
+    @apply bg-danger text-white hover:bg-danger-dark focus:ring-danger;
+  }
+
+  .btn-success {
+    @apply bg-success text-white hover:bg-success-dark focus:ring-success;
+  }
+
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-3 text-sm border border-border-light rounded-lg bg-bg-secondary text-text-primary placeholder-text-disabled;
+    @apply focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-20;
+    min-height: 44px; /* Touch-friendly */
+  }
+
+  .input-error {
+    @apply border-danger focus:border-danger focus:ring-danger;
+  }
+
+  .input-success {
+    @apply border-success focus:border-success focus:ring-success;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-success-light text-success-dark;
+  }
+
+  .badge-warning {
+    @apply bg-warning-light text-warning-dark;
+  }
+
+  .badge-danger {
+    @apply bg-danger-light text-danger-dark;
+  }
+
+  .badge-info {
+    @apply bg-info-light text-info-dark;
+  }
+
+  /* Trust segment badges */
+  .badge-butterfly {
+    @apply bg-butterfly-light text-butterfly-dark;
+  }
+
+  .badge-loyal {
+    @apply bg-loyal-light text-loyal-dark;
+  }
+
+  .badge-one-time {
+    @apply bg-one-time-light text-one-time-dark;
+  }
+
+  .badge-risky {
+    @apply bg-risky-light text-risky-dark;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading spinner */
+  .spinner {
+    @apply inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
+  }
+}
